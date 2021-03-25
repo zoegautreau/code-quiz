@@ -8,9 +8,9 @@ var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
 
 var shuffledQuestions, currentQuestionIndex;
-var winCounter = 0;
-var loseCounter = 0;
-var isWin = false;
+//var winCounter = 0;
+//var loseCounter = 0;
+//var isWin = false;
 var timer;
 var timerCount;
 
@@ -46,7 +46,7 @@ function timesUp() {
   }
 
 function restartQuiz() {
-
+    
 }
   
 // The setTimer function starts and stops the timer and triggers winGame() and loseGame()
@@ -60,14 +60,15 @@ function startTimer() {
         if (isWin && timerCount > 0) {
           // Clears interval and stops timer
           clearInterval(timer);
-          winGame();
+          
+          quizOver();
         }
       }
       // Tests if time has run out
       if (timerCount === 0) {
         // Clears interval
         clearInterval(timer);
-        loseGame();
+        timesUp();
       }
     }, 1000);
   }
