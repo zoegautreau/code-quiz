@@ -1,24 +1,76 @@
 var startButton = document.getElementById("start-button")
 var nextButton = document.getElementById("next-button")
+var win = document.querySelector(".win");
+var lose = document.querySelector(".lose");
+var timerElement = document.querySelector(".timer-count");
 var questionContainerElement = document.getElementById("question-container")
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
 
-var shuffledQuestions, currentQuestionIndex
+var shuffledQuestions, currentQuestionIndex;
+var winCounter = 0;
+var loseCounter = 0;
+var isWin = false;
+var timer;
+var timerCount;
 
-startButton.addEventListener("click", startGame)
+
+startButton.addEventListener("click", startQuiz)
 nextButton.addEventListener("click", () => {
     currentQuestionIndex++;
     setNextQuestion();
 })
 
-function startGame() {
+function startQuiz() {
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0;
     questionContainerElement.classList.remove('hide')
     setNextQuestion();
 }
+
+// The quizScore function is called when all questions are answered
+function quizOver() {
+    startButton.classList.add('hide')
+    answerButtonsElement.classList.add('hide')
+    questionElement.classList.add('hide')
+    questionContainerElement.textContent = "Your score is " + timer******;
+
+  }
+
+// The timesUp function is called when timer reaches 0
+function timesUp() {
+    questionContainerElement.textContent = "Times up! Try again to submit a score!";
+    startButton.disabled = false;
+    restartQuiz()
+  }
+
+function restartQuiz() {
+
+}
+  
+// The setTimer function starts and stops the timer and triggers winGame() and loseGame()
+function startTimer() {
+    // Sets timer
+    timer = setInterval(function() {
+      timerCount--;
+      timerElement.textContent = timerCount;
+      if (timerCount >= 0) {
+        // Tests if win condition is met
+        if (isWin && timerCount > 0) {
+          // Clears interval and stops timer
+          clearInterval(timer);
+          winGame();
+        }
+      }
+      // Tests if time has run out
+      if (timerCount === 0) {
+        // Clears interval
+        clearInterval(timer);
+        loseGame();
+      }
+    }, 1000);
+  }
 
 function setNextQuestion() {
     resetState();
@@ -58,10 +110,8 @@ function selectAnswer(e) {
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
       nextButton.classList.remove('hide')  
     } else {
-        startButton.innerText = 'Restart'
-        startButton.classList.remove('hide')
+        quizOver();
     }
-    
 }
 
 function setStatusClass(element, correct) {
