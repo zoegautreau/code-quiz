@@ -13,3 +13,18 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.container {
+    width: 800px;
+    max-width: 80%;
+    background-color: aliceblue;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
+}
