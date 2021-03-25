@@ -80,46 +80,46 @@ var questions = [
     {
         question: 'Commonly used data types DO NOT include:',
         answers: [
-            { text: 'strings', correct: true},
+            { text: 'strings', correct: false},
             { text: 'booleans', correct: false},
-            { text: 'alerts', correct: false},
+            { text: 'alerts', correct: true},
             { text: 'numbers', correct: false}
         ]
     },
     {
         question: 'The condition in an if/else statement is enclosed within:',
         answers: [
-            { text: 'quotes', correct: true},
+            { text: 'quotes', correct: false},
             { text: 'curly brackets', correct: false},
-            { text: 'parentheses', correct: false},
+            { text: 'parentheses', correct: true},
             { text: 'square brackets', correct: false}
         ]
     },
     {
         question: 'Array is JavaScript can be used to store:',
         answers: [
-            { text: 'numbers & strings', correct: true},
+            { text: 'numbers & strings', correct: false},
             { text: 'other arrays', correct: false},
             { text: 'booleans', correct: false},
-            { text: 'all of the above', correct: false}
+            { text: 'all of the above', correct: true}
         ]
     },
     {
         question: 'String values must be enclosed within _____ when being assigned to variables.',
         answers: [
-            { text: 'commas', correct: true},
+            { text: 'commas', correct: false},
             { text: 'curly brackets', correct: false},
             { text: 'parentheses', correct: false},
-            { text: 'quotes', correct: false}
+            { text: 'quotes', correct: true}
         ]
     },
     {
-        question: 'A very useful tool used during development an ddebugging for printing content to the debugger is:',
+        question: 'A very useful tool used during development and debugging to print content to the debugger is:',
         answers: [
-            { text: 'JavaScript', correct: true},
+            { text: 'JavaScript', correct: false},
             { text: 'terminal/bash', correct: false},
             { text: 'for loops', correct: false},
-            { text: 'console.log', correct: false}
+            { text: 'console.log', correct: true}
         ]
     },
 ]
