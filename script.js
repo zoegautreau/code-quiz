@@ -71,22 +71,46 @@ function setStatusClass(element, correct) {
     }
 }
 
-function clearStatusClass(element){
+function clearStatusClass(element) {
     element.classList.remove('correct')
     element,classList.remove('wrong')
 }
 
 var questions = [
     {
-        question: "?",
+        question: 'Commonly used data types DO NOT include:',
         answers: [
-            { text: 'correct answer', correct: true},
-            { text: 'wrong answers', correct: false},
-            { text: 'wrong answers', correct: false},
-            { text: 'wrong answers', correct: false}
+            { text: 'strings', correct: true},
+            { text: 'booleans', correct: false},
+            { text: 'alerts', correct: false},
+            { text: 'numbers', correct: false}
         ]
-    }
+    },
     {
-        question
-    }
+        question: 'The condition in an if/else statement is enclosed within:',
+        answers: [
+            { text: 'quotes', correct: true},
+            { text: 'curly brackets', correct: false},
+            { text: 'parentheses', correct: false},
+            { text: 'square brackets', correct: false}
+        ]
+    },
+    {
+        question: 'Array is JavaScript can be used to store:',
+        answers: [
+            { text: 'numbers & strings', correct: true},
+            { text: 'other arrays', correct: false},
+            { text: 'booleans', correct: false},
+            { text: 'all of the above', correct: false}
+        ]
+    },
+    {
+        question: 'String values must be enclosed within _____ when being assigned to variables.',
+        answers: [
+            { text: 'quotes', correct: true},
+            { text: 'curly brackets', correct: false},
+            { text: 'parentheses', correct: false},
+            { text: 'square brackets', correct: false}
+        ]
+    },
 ]
