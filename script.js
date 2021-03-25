@@ -107,10 +107,19 @@ var questions = [
     {
         question: 'String values must be enclosed within _____ when being assigned to variables.',
         answers: [
-            { text: 'quotes', correct: true},
+            { text: 'commas', correct: true},
             { text: 'curly brackets', correct: false},
             { text: 'parentheses', correct: false},
-            { text: 'square brackets', correct: false}
+            { text: 'quotes', correct: false}
+        ]
+    },
+    {
+        question: 'A very useful tool used during development an ddebugging for printing content to the debugger is:',
+        answers: [
+            { text: 'JavaScript', correct: true},
+            { text: 'terminal/bash', correct: false},
+            { text: 'for loops', correct: false},
+            { text: 'console.log', correct: false}
         ]
     },
 ]
