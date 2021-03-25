@@ -98,7 +98,7 @@ var questions = [
         ]
     },
     {
-        question: 'Array is JavaScript can be used to store:',
+        question: '"Array" in JavaScript can be used to store:',
         answers: [
             { text: 'numbers & strings', correct: false},
             { text: 'other arrays', correct: false},
