@@ -1,6 +1,6 @@
 *, *::before, *::after {
     box-sizing: border-box;
-    font-family: Gotham Rounded;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 
@@ -17,7 +17,7 @@ body {
 .container {
     width: 800px;
     max-width: 80%;
-    background-color: aliceblue;
+    background-color: rgb(195, 216, 235);
     border-radius: 5px;
     padding: 10px;
 }
@@ -27,4 +27,17 @@ body {
     grid-template-columns: repeat(2, auto);
     gap: 10px;
     margin: 20px 0;
+}
+
+.btn {
+    background-color: honeydew;
+    border-color: honeydew;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: slategray;
+    font-weight: bolder;
+}
+
+.btn:hover {
+    border-color: slategray;
 }
