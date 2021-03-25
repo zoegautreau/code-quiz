@@ -1,4 +1,5 @@
 var startButton = document.getElementById("start-button")
+var nextButton = document.getElementById("next-button")
 var questionContainerElement = document.getElementById("question-container")
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
@@ -17,8 +18,8 @@ function startGame() {
 }
 
 function setNextQuestion() {
+    resetState();
     showQuestion(shuffledQuestions[currentQuestionIndex])
-
 }
 
 function showQuestion(question) {
@@ -32,9 +33,15 @@ function showQuestion(question) {
         }
         button.addEventListener('click', selectAnswer)
         answerButtonsElement.appendChild(button)
-        
     });
+}
 
+function resetState() {
+    nextButton.classList.add('hide')
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild
+        (answerButtonsElement.firstChild)
+    }
 }
 
 function selectAnswer() {
