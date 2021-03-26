@@ -8,24 +8,26 @@ var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
 
 var shuffledQuestions, currentQuestionIndex;
-//var winCounter = 0;
-//var loseCounter = 0;
-//var isWin = false;
 var timer;
 var timerCount;
 
-
-startButton.addEventListener("click", startQuiz)
 nextButton.addEventListener("click", () => {
     currentQuestionIndex++;
     setNextQuestion();
 })
+
+function startPrompt() {
+   timerElement.classList.add('hide')
+   startButton.addEventListener("click", startQuiz) 
+}
 
 function startQuiz() {
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0;
     questionContainerElement.classList.remove('hide')
+    timerElement.classList.remove('hide')
+    startTimer();
     setNextQuestion();
 }
 
@@ -34,44 +36,40 @@ function quizOver() {
     startButton.classList.add('hide')
     answerButtonsElement.classList.add('hide')
     questionElement.classList.add('hide')
-    questionContainerElement.textContent = "Your score is " + timer******;
-
+    questionContainerElement.textContent = 'Your score is ' + timerCount;
+    // initials prompt function
   }
+
+//initials prompt function then score board
 
 // The timesUp function is called when timer reaches 0
 function timesUp() {
     questionContainerElement.textContent = "Times up! Try again to submit a score!";
     startButton.disabled = false;
-    restartQuiz()
+    restartQuiz();
   }
 
 function restartQuiz() {
-    
+   startPrompt();
 }
   
 // The setTimer function starts and stops the timer and triggers winGame() and loseGame()
 function startTimer() {
     // Sets timer
     timer = setInterval(function() {
-      timerCount--;
-      timerElement.textContent = timerCount;
-      if (timerCount >= 0) {
-        // Tests if win condition is met
-        if (isWin && timerCount > 0) {
+        timerCount--;
+        timerElement.textContent = timerCount;
+        if (shuffledQuestions.length = currentQuestionIndex && timerCount > 0) {
           // Clears interval and stops timer
           clearInterval(timer);
-          
           quizOver();
-        }
-      }
-      // Tests if time has run out
-      if (timerCount === 0) {
+        } else if (timerCount === 0) {
         // Clears interval
         clearInterval(timer);
         timesUp();
       }
     }, 1000);
-  }
+}
 
 function setNextQuestion() {
     resetState();
