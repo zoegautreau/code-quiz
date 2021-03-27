@@ -8,18 +8,19 @@ var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
 
 var shuffledQuestions, currentQuestionIndex;
-var timer;
-var timerCount;
+//var timer;
+//var timerCount;
 
+startButton.addEventListener("click", startQuiz) 
 nextButton.addEventListener("click", () => {
     currentQuestionIndex++;
     setNextQuestion();
 })
 
-function startPrompt() {
-   timerElement.classList.add('hide')
-   startButton.addEventListener("click", startQuiz) 
-}
+//function startPrompt() {
+   //timerElement.classList.add('hide')
+  // 
+//}
 
 function startQuiz() {
     startButton.classList.add('hide')
@@ -32,44 +33,44 @@ function startQuiz() {
 }
 
 // The quizScore function is called when all questions are answered
-function quizOver() {
-    startButton.classList.add('hide')
-    answerButtonsElement.classList.add('hide')
-    questionElement.classList.add('hide')
-    questionContainerElement.textContent = 'Your score is ' + timerCount;
+//function quizOver() {
+    //startButton.classList.add('hide')
+    //answerButtonsElement.classList.add('hide')
+    //questionElement.classList.add('hide')
+   // questionContainerElement.textContent = 'Your score is ' + timerCount;
     // initials prompt function
-  }
+  //}
 
 //initials prompt function then score board
 
 // The timesUp function is called when timer reaches 0
-function timesUp() {
-    questionContainerElement.textContent = "Times up! Try again to submit a score!";
-    startButton.disabled = false;
-    restartQuiz();
-  }
+//function timesUp() {
+//    questionContainerElement.textContent = "Times up! Try again to submit a score!";
+  //  startButton.disabled = false;
+    //restartQuiz();
+  //}
 
-function restartQuiz() {
-   startPrompt();
-}
+//function restartQuiz() {
+  // startPrompt();
+//}
   
 // The setTimer function starts and stops the timer and triggers winGame() and loseGame()
-function startTimer() {
+//function startTimer() {
     // Sets timer
-    timer = setInterval(function() {
-        timerCount--;
-        timerElement.textContent = timerCount;
-        if (shuffledQuestions.length = currentQuestionIndex && timerCount > 0) {
+  //  timer = setInterval(function() {
+    //    timerCount--;
+      //  timerElement.textContent = timerCount;
+        //if (shuffledQuestions.length = currentQuestionIndex && timerCount > 0) {
           // Clears interval and stops timer
-          clearInterval(timer);
-          quizOver();
-        } else if (timerCount === 0) {
+          //clearInterval(timer);
+          //quizOver();
+        //} else if (timerCount === 0) {
         // Clears interval
-        clearInterval(timer);
-        timesUp();
-      }
-    }, 1000);
-}
+        //clearInterval(timer);
+        //timesUp();
+      //}
+    //}, 1000);
+//}
 
 function setNextQuestion() {
     resetState();
