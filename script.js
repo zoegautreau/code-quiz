@@ -1,15 +1,12 @@
 var startButton = document.getElementById("start-button")
 var nextButton = document.getElementById("next-button")
-var win = document.querySelector(".win");
-var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
 var questionContainerElement = document.getElementById("question-container")
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
 
 var shuffledQuestions, currentQuestionIndex;
-//var timer;
-//var timerCount;
+
 
 startButton.addEventListener("click", startQuiz) 
 nextButton.addEventListener("click", () => {
