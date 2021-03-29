@@ -1,6 +1,6 @@
 var startButton = document.getElementById("start-button")
 var nextButton = document.getElementById("next-button")
-var timerElement = document.querySelector(".timer-count");
+// var timerElement = document.querySelector(".timer-count");
 var questionContainerElement = document.getElementById("question-container")
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
@@ -14,63 +14,18 @@ nextButton.addEventListener("click", () => {
     setNextQuestion();
 })
 
-//function startPrompt() {
-   //timerElement.classList.add('hide')
-  // 
-//}
-
 function startQuiz() {
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0;
     questionContainerElement.classList.remove('hide')
-    timerElement.classList.remove('hide')
-    startTimer();
+    //timerElement.classList.remove('hide')
+    //startTimer();
     setNextQuestion();
 }
 
-function startTimer() {
-    
-}
-
-// The quizScore function is called when all questions are answered
-//function quizOver() {
-    //startButton.classList.add('hide')
-    //answerButtonsElement.classList.add('hide')
-    //questionElement.classList.add('hide')
-   // questionContainerElement.textContent = 'Your score is ' + timerCount;
-    // initials prompt function
-  //}
-
-//initials prompt function then score board
-
-// The timesUp function is called when timer reaches 0
-//function timesUp() {
-//    questionContainerElement.textContent = "Times up! Try again to submit a score!";
-  //  startButton.disabled = false;
-    //restartQuiz();
-  //}
-
-//function restartQuiz() {
-  // startPrompt();
-//}
-  
-// The setTimer function starts and stops the timer and triggers winGame() and loseGame()
 //function startTimer() {
-    // Sets timer
-  //  timer = setInterval(function() {
-    //    timerCount--;
-      //  timerElement.textContent = timerCount;
-        //if (shuffledQuestions.length = currentQuestionIndex && timerCount > 0) {
-          // Clears interval and stops timer
-          //clearInterval(timer);
-          //quizOver();
-        //} else if (timerCount === 0) {
-        // Clears interval
-        //clearInterval(timer);
-        //timesUp();
-      //}
-    //}, 1000);
+
 //}
 
 function setNextQuestion() {
@@ -111,7 +66,8 @@ function selectAnswer(e) {
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
       nextButton.classList.remove('hide')  
     } else {
-        quizOver();
+        startButton.textContent("Restart");
+        startQuiz();
     }
 }
 
@@ -176,3 +132,48 @@ var questions = [
         ]
     },
 ]
+
+//function startPrompt() {
+   //timerElement.classList.add('hide')
+  // 
+//}
+
+// The quizScore function is called when all questions are answered
+//function quizOver() {
+    //startButton.classList.add('hide')
+    //answerButtonsElement.classList.add('hide')
+    //questionElement.classList.add('hide')
+   // questionContainerElement.textContent = 'Your score is ' + timerCount;
+    // initials prompt function
+  //}
+
+//initials prompt function then score board
+
+// The timesUp function is called when timer reaches 0
+//function timesUp() {
+//    questionContainerElement.textContent = "Times up! Try again to submit a score!";
+  //  startButton.disabled = false;
+    //restartQuiz();
+  //}
+
+//function restartQuiz() {
+  // startPrompt();
+//}
+  
+// The setTimer function starts and stops the timer and triggers winGame() and loseGame()
+//function startTimer() {
+    // Sets timer
+  //  timer = setInterval(function() {
+    //    timerCount--;
+      //  timerElement.textContent = timerCount;
+        //if (shuffledQuestions.length = currentQuestionIndex && timerCount > 0) {
+          // Clears interval and stops timer
+          //clearInterval(timer);
+          //quizOver();
+        //} else if (timerCount === 0) {
+        // Clears interval
+        //clearInterval(timer);
+        //timesUp();
+      //}
+    //}, 1000);
+//}
