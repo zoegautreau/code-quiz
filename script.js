@@ -29,6 +29,10 @@ function startQuiz() {
     setNextQuestion();
 }
 
+function startTimer() {
+    
+}
+
 // The quizScore function is called when all questions are answered
 //function quizOver() {
     //startButton.classList.add('hide')
