@@ -3,8 +3,14 @@
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 
+:root {
+    --hue-neutral: 200;
+    --hue-wrong: 0;
+    --hue-correct: 145;
+}
 
 body {
+    --hue: var(--hue-neutral);
     padding: 0;
     margin: 0;
     display: flex;
@@ -12,7 +18,15 @@ body {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: honeydew;
+    background-color: hsl(var(--hue), 100%, 20%);
+}
+
+body.correct {
+    --hue: var(--hue-correct);
+}
+
+body.wrong{
+    --hue: var(--hue-wrong);
 }
 
 .container {
@@ -34,11 +48,20 @@ body {
 }
 
 .btn {
-    background-color:thistle;
+    --hue: var(--hue-neutral);
+    background-color:hsl(var(--hue), 100%, 50%);
     padding: 5px 10px;
     color: honeydew ;
     font-size: 1.5rem;
     border-color: honeydew;
+}
+
+.btn.correct {
+    --hue: var(--hue-correct);
+}
+
+.btn.wrong {
+    --hue: var(--hue-wrong);
 }
 
 .btn:hover {

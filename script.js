@@ -25,7 +25,7 @@ function startPage() {
 
 // When the "start" button is clicked this function is called and the quiz starts
 function startQuiz() {
-    countdown();
+    countdown();******
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0;
@@ -39,36 +39,27 @@ nextButton.addEventListener("click", () => {
     setNextQuestion();
 })
 
-// Timer that counts down from 5
-function countdown() {
-    var timeLeft = 60;
-  
-    // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-    var timeInterval = setInterval(function () {
-      // As long as the `timeLeft` is greater than 1
-      if (timeLeft > 1) {
-        // Set the `textContent` of `timerEl` to show the remaining seconds
-        timerEl.textContent = timeLeft + ' seconds remaining';
-        // Decrement `timeLeft` by 1
-        timeLeft--;
-      } else if (timeLeft === 1) {
-        // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
-        timerEl.textContent = timeLeft + ' second remaining';
-        timeLeft--;
-      } else if (correct != true) {
-        timeLeft = timeLeft - 10;
-      } else {
-        // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-        timerEl.textContent = '';
+// function startTimer() {
+//     var sec = 60;
+//     function startTimer(){
+//         console.log('timer suppose to go')
+//         var timer = setInterval(function(){
+//             sec--;
+//             document.getElementById('timer-count').innerHTML='00:'+sec;
+//             if (sec < 0) {
+//                 clearInterval(timer);
+//                 alert("Time is up!")
+//             }
+//         }, 1000);
+//     }
+//     document.getElementById('incorrect').addEventListener('click', function() {
+//         sec -= 5;
+//         document.getElementById('timer-count').innerHTML='00:'+sec;
+//     });
+//     startTimer();
+// };
 
-        // Use `clearInterval()` to stop the timer
-        clearInterval(timeInterval);
 
-        // Call the `displayMessage()` function
-        // displayMessage();}
-      }
-    }, 1000);
-  }
 
 // Resets state and displays next question
 function setNextQuestion() {
@@ -181,3 +172,34 @@ var questions = [
         ]
     },
 ]
+
+// // Timer that counts down from 60
+// function countdown() {
+//     var timeLeft = 60;
+  
+//     // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+//     var timeInterval = setInterval(function () {
+//       // As long as the `timeLeft` is greater than 1
+//       if (timeLeft > 1) {
+//         // Set the `textContent` of `timerEl` to show the remaining seconds
+//         timerEl.textContent = timeLeft + ' seconds remaining';
+//         // Decrement `timeLeft` by 1
+//         timeLeft--;
+//       } else if (timeLeft === 1) {
+//         // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
+//         timerEl.textContent = timeLeft + ' second remaining';
+//         timeLeft--;
+//       } else if (correct != true) {
+//         timeLeft = timeLeft - 10;
+//       } else {
+//         // Once `timeLeft` gets to 0, set `timerEl` to an empty string
+//         timerEl.textContent = '';
+
+//         // Use `clearInterval()` to stop the timer
+//         clearInterval(timeInterval);
+
+//         // Call the `displayMessage()` function
+//         // displayMessage();}
+//       }
+//     }, 1000);
+//   }
