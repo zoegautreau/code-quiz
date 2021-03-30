@@ -12,17 +12,17 @@ body {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: thistle;
+    background-color: honeydew;
 }
 
 .container {
     width: 800px;
     max-width: 80%;
-    background-color: honeydew;
+    background-color: lightsteelblue;
     border-radius: 5px;
     padding: 100px;
     font-size: 1.5rem;
-    color: thistle;
+    color:honeydew;
     font-weight: bold;
 }
 
@@ -35,11 +35,10 @@ body {
 
 .btn {
     background-color:thistle;
-    border-radius: 5px;
     padding: 5px 10px;
     color: honeydew ;
     font-size: 1.5rem;
-    border: none;
+    border-color: honeydew;
 }
 
 .btn:hover {

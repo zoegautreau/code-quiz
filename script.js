@@ -1,32 +1,54 @@
+// variables to select items in html
 var startButton = document.getElementById("start-button")
 var nextButton = document.getElementById("next-button")
-// var timerElement = document.querySelector(".timer-count");
+var timeLeft = document.querySelector(".timer-count");
 var questionContainerElement = document.getElementById("question-container")
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
 
 var shuffledQuestions, currentQuestionIndex;
+var currentTime;
 
 
-startButton.addEventListener("click", startQuiz) 
-nextButton.addEventListener("click", () => {
-    currentQuestionIndex++;
-    setNextQuestion();
-})
+function rulesConfirm() {
+    confirm("1. You have 60 seconds to answer 5 JavaScript-related questions.\ 2. Each wrong answer subtracts 10 seconds from your total time.\ 3. Your final score will be the time remaining at the end of the quiz.\ 4. When the quiz is complete, enter your initials to be placed on the highscores page."); 
+    if(confirm) {
+    startPage();    
+    }
+}
 
+// starts quiz when "start" button is clicked
+function startPage() {
+   startButton.addEventListener("click", startQuiz); 
+}
+
+// when the "start" button is clicked this function is called and the quiz starts
 function startQuiz() {
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0;
     questionContainerElement.classList.remove('hide')
-    //timerElement.classList.remove('hide')
-    //startTimer();
+    // var timerId = setInterval(countDown, 1000)
     setNextQuestion();
 }
 
-//function startTimer() {
+// proceeds to next question when "next" button is clicked
+nextButton.addEventListener("click", () => {
+    currentQuestionIndex++;
+    setNextQuestion();
+})
 
-//}
+// timer/countdown function
+function countDown() {
+    currentTime--;
+    timerLeft.textContent = currentTime
+
+    if (currentTime === 0) {
+        clearInterval(timerId);
+    }
+}
+
+
 
 function setNextQuestion() {
     resetState();
@@ -66,8 +88,8 @@ function selectAnswer(e) {
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
       nextButton.classList.remove('hide')  
     } else {
-        startButton.textContent("Restart");
-        startQuiz();
+        startButton.classList.remove("hide");
+        startButton.textContent = "Restart";
     }
 }
 
@@ -89,9 +111,9 @@ var questions = [
     {
         question: 'Commonly used data types DO NOT include:',
         answers: [
+            { text: 'alerts', correct: true},
             { text: 'strings', correct: false},
             { text: 'booleans', correct: false},
-            { text: 'alerts', correct: true},
             { text: 'numbers', correct: false}
         ]
     },
@@ -117,18 +139,18 @@ var questions = [
         question: 'String values must be enclosed within _____ when being assigned to variables.',
         answers: [
             { text: 'commas', correct: false},
+            { text: 'quotes', correct: true},
             { text: 'curly brackets', correct: false},
-            { text: 'parentheses', correct: false},
-            { text: 'quotes', correct: true}
+            { text: 'parentheses', correct: false}
         ]
     },
     {
         question: 'A very useful tool used during development and debugging to print content to the debugger is:',
         answers: [
             { text: 'JavaScript', correct: false},
+            { text: 'console.log', correct: true},
             { text: 'terminal/bash', correct: false},
-            { text: 'for loops', correct: false},
-            { text: 'console.log', correct: true}
+            { text: 'for loops', correct: false}
         ]
     },
 ]
