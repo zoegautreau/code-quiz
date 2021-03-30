@@ -1,13 +1,16 @@
 // variables to select items in html
 var startButton = document.getElementById("start-button")
 var nextButton = document.getElementById("next-button")
-var timerEl = document.getElementById('countdown');
+var timerEl = document.getElementById('timer-count');
 var questionContainerElement = document.getElementById("question-container")
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
 
 
 var shuffledQuestions, currentQuestionIndex;
+
+
+
 
 
 // Asks user to confirm understaning of the rules then starts quiz from start button
@@ -18,14 +21,26 @@ function rulesConfirm() {
     }
 }
 
+
+
+
+
+
 // Starts quiz when "start" button is clicked
 function startPage() {
    startButton.addEventListener("click", startQuiz); 
 }
 
+
+
+
+
+
+
+
 // When the "start" button is clicked this function is called and the quiz starts
 function startQuiz() {
-    countdown();******
+    startTimer();
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0;
@@ -33,39 +48,38 @@ function startQuiz() {
     setNextQuestion();
 }
 
+
+
+
+
+
+
 // Proceeds to next question when "next" button is clicked
 nextButton.addEventListener("click", () => {
     currentQuestionIndex++;
     setNextQuestion();
 })
 
-// function startTimer() {
-//     var sec = 60;
-//     function startTimer(){
-//         console.log('timer suppose to go')
-//         var timer = setInterval(function(){
-//             sec--;
-//             document.getElementById('timer-count').innerHTML='00:'+sec;
-//             if (sec < 0) {
-//                 clearInterval(timer);
-//                 alert("Time is up!")
-//             }
-//         }, 1000);
-//     }
-//     document.getElementById('incorrect').addEventListener('click', function() {
-//         sec -= 5;
-//         document.getElementById('timer-count').innerHTML='00:'+sec;
-//     });
-//     startTimer();
-// };
+
+
+
+
+
+
+
 
 
 
 // Resets state and displays next question
 function setNextQuestion() {
     resetState();
-    showQuestion(shuffledQuestions[currentQuestionIndex])
+    showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
+
+
+
+
+
 
 // Shuffles the questions and presents them randomly
 function showQuestion(question) {
@@ -76,21 +90,19 @@ function showQuestion(question) {
         button.classList.add('btn')
         if (answer.correct) {
             button.dataset.correct = answer.correct
+
+        } else if (answer.wrong) {
+            button.dataset.wrong = answer.correct
+            sec -= 10;
+            document.getElementById('timer-count').innerHTML='00:'+sec;
         }
         button.addEventListener('click', selectAnswer)
         answerButtonsElement.appendChild(button)
     });
 }
 
-// Resets state
-function resetState() {
-    clearStatusClass(document.body)
-    nextButton.classList.add('hide')
-    while (answerButtonsElement.firstChild) {
-        answerButtonsElement.removeChild
-        (answerButtonsElement.firstChild)
-    }
-}
+
+
 
 // Allows user to select answers till the questions run out
 function selectAnswer(e) {
@@ -108,6 +120,24 @@ function selectAnswer(e) {
     }
 }
 
+
+
+
+
+// Resets state of answers to just question  with answers, no next button
+function resetState() {
+    clearStatusClass(document.body)
+    nextButton.classList.add('hide')
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild
+        (answerButtonsElement.firstChild)
+    }
+}
+
+
+
+
+
 // setStatusClass
 function setStatusClass(element, correct) {
     clearStatusClass(element)
@@ -118,11 +148,19 @@ function setStatusClass(element, correct) {
     }
 }
 
+
+
+
+
 // clearStatusClass
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 }
+
+
+
+
 
 // Series of questions for the quiz shuffled at random
 var questions = [
@@ -173,33 +211,34 @@ var questions = [
     },
 ]
 
-// // Timer that counts down from 60
+// Timer that counts down from 60
 // function countdown() {
 //     var timeLeft = 60;
   
-//     // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+//     Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
 //     var timeInterval = setInterval(function () {
-//       // As long as the `timeLeft` is greater than 1
+//       As long as the `timeLeft` is greater than 1
 //       if (timeLeft > 1) {
-//         // Set the `textContent` of `timerEl` to show the remaining seconds
+//         Set the `textContent` of `timerEl` to show the remaining seconds
 //         timerEl.textContent = timeLeft + ' seconds remaining';
-//         // Decrement `timeLeft` by 1
+//         Decrement `timeLeft` by 1
 //         timeLeft--;
 //       } else if (timeLeft === 1) {
-//         // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
+//         When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
 //         timerEl.textContent = timeLeft + ' second remaining';
+//         timeLeft;
+//       } else if (setStatusClass(element, correct) = true) {
 //         timeLeft--;
-//       } else if (correct != true) {
-//         timeLeft = timeLeft - 10;
 //       } else {
-//         // Once `timeLeft` gets to 0, set `timerEl` to an empty string
+//         Once `timeLeft` gets to 0, set `timerEl` to an empty string
 //         timerEl.textContent = '';
 
-//         // Use `clearInterval()` to stop the timer
+//         Use `clearInterval()` to stop the timer
 //         clearInterval(timeInterval);
 
-//         // Call the `displayMessage()` function
-//         // displayMessage();}
+//         Call the `displayMessage()` function
+//         displayMessage();}
 //       }
 //     }, 1000);
 //   }
+
