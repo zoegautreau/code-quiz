@@ -1,15 +1,16 @@
 // variables to select items in html
 var startButton = document.getElementById("start-button")
 var nextButton = document.getElementById("next-button")
-var timeLeft = document.querySelector(".timer-count");
+var timerEl = document.getElementById('countdown');
 var questionContainerElement = document.getElementById("question-container")
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
 
+
 var shuffledQuestions, currentQuestionIndex;
-var currentTime;
 
 
+// Asks user to confirm understaning of the rules then starts quiz from start button
 function rulesConfirm() {
     confirm("1. You have 60 seconds to answer 5 JavaScript-related questions.\ 2. Each wrong answer subtracts 10 seconds from your total time.\ 3. Your final score will be the time remaining at the end of the quiz.\ 4. When the quiz is complete, enter your initials to be placed on the highscores page."); 
     if(confirm) {
@@ -17,44 +18,65 @@ function rulesConfirm() {
     }
 }
 
-// starts quiz when "start" button is clicked
+// Starts quiz when "start" button is clicked
 function startPage() {
    startButton.addEventListener("click", startQuiz); 
 }
 
-// when the "start" button is clicked this function is called and the quiz starts
+// When the "start" button is clicked this function is called and the quiz starts
 function startQuiz() {
+    countdown();
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0;
     questionContainerElement.classList.remove('hide')
-    // var timerId = setInterval(countDown, 1000)
     setNextQuestion();
 }
 
-// proceeds to next question when "next" button is clicked
+// Proceeds to next question when "next" button is clicked
 nextButton.addEventListener("click", () => {
     currentQuestionIndex++;
     setNextQuestion();
 })
 
-// timer/countdown function
-function countDown() {
-    currentTime--;
-    timerLeft.textContent = currentTime
+// Timer that counts down from 5
+function countdown() {
+    var timeLeft = 60;
+  
+    // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+    var timeInterval = setInterval(function () {
+      // As long as the `timeLeft` is greater than 1
+      if (timeLeft > 1) {
+        // Set the `textContent` of `timerEl` to show the remaining seconds
+        timerEl.textContent = timeLeft + ' seconds remaining';
+        // Decrement `timeLeft` by 1
+        timeLeft--;
+      } else if (timeLeft === 1) {
+        // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
+        timerEl.textContent = timeLeft + ' second remaining';
+        timeLeft--;
+      } else if (correct != true) {
+        timeLeft = timeLeft - 10;
+      } else {
+        // Once `timeLeft` gets to 0, set `timerEl` to an empty string
+        timerEl.textContent = '';
 
-    if (currentTime === 0) {
-        clearInterval(timerId);
-    }
-}
+        // Use `clearInterval()` to stop the timer
+        clearInterval(timeInterval);
 
+        // Call the `displayMessage()` function
+        // displayMessage();}
+      }
+    }, 1000);
+  }
 
-
+// Resets state and displays next question
 function setNextQuestion() {
     resetState();
     showQuestion(shuffledQuestions[currentQuestionIndex])
 }
 
+// Shuffles the questions and presents them randomly
 function showQuestion(question) {
     questionElement.innerText = question.question
     question.answers.forEach(answer => {
@@ -69,6 +91,7 @@ function showQuestion(question) {
     });
 }
 
+// Resets state
 function resetState() {
     clearStatusClass(document.body)
     nextButton.classList.add('hide')
@@ -78,6 +101,7 @@ function resetState() {
     }
 }
 
+// Allows user to select answers till the questions run out
 function selectAnswer(e) {
     var selectedButton = e.target;
     var correct = selectedButton.dataset.correct;
@@ -93,6 +117,7 @@ function selectAnswer(e) {
     }
 }
 
+// setStatusClass
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
@@ -102,11 +127,13 @@ function setStatusClass(element, correct) {
     }
 }
 
+// clearStatusClass
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 }
 
+// Series of questions for the quiz shuffled at random
 var questions = [
     {
         question: 'Commonly used data types DO NOT include:',
@@ -154,48 +181,3 @@ var questions = [
         ]
     },
 ]
-
-//function startPrompt() {
-   //timerElement.classList.add('hide')
-  // 
-//}
-
-// The quizScore function is called when all questions are answered
-//function quizOver() {
-    //startButton.classList.add('hide')
-    //answerButtonsElement.classList.add('hide')
-    //questionElement.classList.add('hide')
-   // questionContainerElement.textContent = 'Your score is ' + timerCount;
-    // initials prompt function
-  //}
-
-//initials prompt function then score board
-
-// The timesUp function is called when timer reaches 0
-//function timesUp() {
-//    questionContainerElement.textContent = "Times up! Try again to submit a score!";
-  //  startButton.disabled = false;
-    //restartQuiz();
-  //}
-
-//function restartQuiz() {
-  // startPrompt();
-//}
-  
-// The setTimer function starts and stops the timer and triggers winGame() and loseGame()
-//function startTimer() {
-    // Sets timer
-  //  timer = setInterval(function() {
-    //    timerCount--;
-      //  timerElement.textContent = timerCount;
-        //if (shuffledQuestions.length = currentQuestionIndex && timerCount > 0) {
-          // Clears interval and stops timer
-          //clearInterval(timer);
-          //quizOver();
-        //} else if (timerCount === 0) {
-        // Clears interval
-        //clearInterval(timer);
-        //timesUp();
-      //}
-    //}, 1000);
-//}
