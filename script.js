@@ -141,7 +141,8 @@ function selectAnswer(e) {
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
       nextButton.classList.remove('hide')  
     } //else {
-        //startButton.classList.remove("hide");
+        startButton.classList.remove("hide");
+        startButton.textContent = "Restart"
         // **** endQuiz();
     //}
 }
