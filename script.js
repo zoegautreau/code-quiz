@@ -7,67 +7,46 @@ var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
 
 
+
+
 var shuffledQuestions, currentQuestionIndex;
 var timeLeft = 60;
 var userInitials;
-
+var rules = confirm("1. You have 60 seconds to answer 5 JavaScript-related questions.\ 2. Each wrong answer subtracts 10 seconds from your total time.\ 3. Your final score will be the time remaining at the end of the quiz.\ 4. When the quiz is complete, enter your initials to be placed on the highscores page."); 
 
 
 // Asks user to confirm understaning of the rules then starts quiz from start button
 function rulesConfirm() {
-    confirm("1. You have 60 seconds to answer 5 JavaScript-related questions.\ 2. Each wrong answer subtracts 10 seconds from your total time.\ 3. Your final score will be the time remaining at the end of the quiz.\ 4. When the quiz is complete, enter your initials to be placed on the highscores page."); 
-    if(confirm) {
-    startPage();    
+    rules;
+    if (rules) {
+    startButton.classList.remove('hide')
+    timerEl.classList.remove('hide')
+    startButton.addEventListener("click", startTimer); 
     }
 }
 
 
-
-
-
-
-// Starts quiz when "start" button is clicked
-function startPage() {
-   startButton.addEventListener("click", startQuiz); 
-}
-
-
-
-
-
-
-
-
-// When the "start" button is clicked this function is called and the quiz starts
-function startQuiz() {
-    startTimer();
+// Timer that counts down from 60
+function startTimer() {    
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0;
     questionContainerElement.classList.remove('hide')
     setNextQuestion();
-}
-
-
-// Timer that counts down from 60
-function startTimer() {
-    
-  
     // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
     var timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
-      if (timeLeft > 1) {
-        // Set the `textContent` of `timerEl` to show the remaining seconds
+      if (timeLeft >= 0) {
+        // Set the `textContent` of `timerEl` to show the remaining seconds        
         timerEl.textContent = timeLeft + ' seconds remaining';
-        // Decrement `timeLeft` by 1
-        timeLeft--;
+        timeLeft--;                 
       } else if (timeLeft === 1) {
         // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
-        timerEl.textContent = timeLeft + ' second remaining';
+        timerEl.textContent = '1 second remaining';
         timeLeft--;
       } else if (timeLeft === 0) {
         // Set the `textContent` of `timerEl` to show the remaining seconds
-        timerEl.textContent = 0 + ' seconds remaining';
+        timerEl.textContent = '0 seconds remaining';
         // Use `clearInterval()` to stop the timer
         clearInterval(timeInterval);
         //Call the `initialsPrompt()` function
@@ -75,6 +54,9 @@ function startTimer() {
         }
     }, 1000);
   }
+
+
+
 
 function initialsPrompt() {
     userInitials = prompt("Enter your initials here to be added to the highscores list!");
