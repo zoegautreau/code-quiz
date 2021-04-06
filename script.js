@@ -18,9 +18,10 @@ var rules = confirm("1. You have 60 seconds to answer 5 JavaScript-related quest
 // Asks user to confirm understaning of the rules then starts quiz from start button
 function rulesConfirm() {
     rules;
-    if (rules) {
     startButton.classList.remove('hide')
     timerEl.classList.remove('hide')
+    timerEl.textContent = '60 seconds remaining';
+    if (rules) {
     startButton.addEventListener("click", startTimer); 
     }
 }
