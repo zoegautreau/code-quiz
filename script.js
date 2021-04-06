@@ -124,15 +124,16 @@ function selectAnswer(e) {
       nextButton.classList.remove('hide')  
     } else {
         saveButton.classList.remove("hide");
-        saveButton.addEventListener('click', initialsPrompt);
+        saveButton.addEventListener('click', initialsConfirm);
     }
 }
 
 
-function initialsPrompt() {
+function initialsConfirm() {
     clearInterval(timeInterval);
     timeLeft = timeLeft + 1;
-    userInitials = prompt("Your score is " + timeLeft +  ". \ Enter your initials here to be added to the highscores list!");
+    timeLeft = finalScore;
+    userInitials = confirm("Your score is " + finalScore +  ". \ Enter your initials in the upcoming form to be added to the highscores list!");
 }
 
 
