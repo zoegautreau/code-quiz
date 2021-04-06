@@ -9,8 +9,10 @@
     <title>JavaScript Quiz</title>
 </head>
 <body onload="rulesConfirm()">
+    
+    <div id="highscores-list" class="hide card">
+        <a href="scores.html">View Highscores List</a>
     <div class="timer-container hide" id="timer-count">
-        <a href="scores.html"></a>
     </div>
     <div class="container" id="container">    
         <div id="question-container" class="hide">
@@ -25,6 +27,7 @@
         <div class="controls">
             <button id="start-button" class="start-button btn hide">Start</button>
             <button id="next-button" class="next-button btn hide">Next</button>
+            <button id="save-button" class="save-button btn hide">Save</button>
         </div>       
     </div>
 </body>

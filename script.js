@@ -1,17 +1,19 @@
 // variables to select items in html
 var startButton = document.getElementById("start-button")
 var nextButton = document.getElementById("next-button")
+var saveButton = document.getElementById("save-button")
 var timerEl = document.getElementById('timer-count');
 var questionContainerElement = document.getElementById("question-container")
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
-
+var highscoresList = document.getElementById('highscores-list')
 
 
 
 var shuffledQuestions, currentQuestionIndex;
-var timeLeft = 60;
+var timeLeft = 59;
 var userInitials;
+var timeInterval;
 var rules = confirm("1. You have 60 seconds to answer 5 JavaScript-related questions.\ 2. Each wrong answer subtracts 10 seconds from your total time.\ 3. Your final score will be the time remaining at the end of the quiz.\ 4. When the quiz is complete, enter your initials to be placed on the highscores page."); 
 
 
@@ -20,6 +22,7 @@ function rulesConfirm() {
     rules;
     startButton.classList.remove('hide')
     timerEl.classList.remove('hide')
+    highscoresList.classList.remove('hide')
     timerEl.textContent = '60 seconds remaining';
     if (rules) {
     startButton.addEventListener("click", startTimer); 
@@ -27,7 +30,7 @@ function rulesConfirm() {
 }
 
 
-// Timer that counts down from 60
+// Timer that counts down from 59
 function startTimer() {    
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
@@ -46,12 +49,10 @@ function startTimer() {
         timerEl.textContent = '1 second remaining';
         timeLeft--;
       } else if (timeLeft === 0) {
-        // Set the `textContent` of `timerEl` to show the remaining seconds
-        timerEl.textContent = '0 seconds remaining';
         // Use `clearInterval()` to stop the timer
         clearInterval(timeInterval);
-        //Call the `initialsPrompt()` function
-        initialsPrompt();   
+        // Set the `textContent` of `timerEl` to show the remaining seconds
+        timerEl.textContent = '0 seconds remaining';  
         }
     }, 1000);
   }
@@ -59,9 +60,7 @@ function startTimer() {
 
 
 
-function initialsPrompt() {
-    userInitials = prompt("Enter your initials here to be added to the highscores list!");
-}
+
 
 
 // Proceeds to next question when "next" button is clicked
@@ -124,12 +123,17 @@ function selectAnswer(e) {
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
       nextButton.classList.remove('hide')  
     } else {
-        startButton.classList.remove("hide");
-        // startButton.textContent = "Restart"
-        // **** endQuiz();
+        saveButton.classList.remove("hide");
+        saveButton.addEventListener('click', initialsPrompt);
     }
 }
 
+
+function initialsPrompt() {
+    clearInterval(timeInterval);
+    timeLeft = timeLeft + 1;
+    userInitials = prompt("Your score is " + timeLeft +  ". \ Enter your initials here to be added to the highscores list!");
+}
 
 
 

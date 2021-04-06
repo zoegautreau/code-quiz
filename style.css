@@ -22,6 +22,10 @@ body {
     background-color: hsl(var(--hue), 100%, 20%);
 }
 
+a {
+    color: aliceblue;
+}
+
 body.correct {
     --hue: var(--hue-correct);
 }
