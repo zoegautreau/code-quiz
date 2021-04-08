@@ -5,3 +5,4 @@
 <h3>The quiz begins with a confirm box that explains the rules.</h3>
 <h3>Once the user completes the quiz, they are brought to the scores page to enter their initials and scores.</h3>
 
+
