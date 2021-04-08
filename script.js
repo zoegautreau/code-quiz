@@ -1,7 +1,7 @@
 // variables to select items in html
 var startButton = document.getElementById("start-button")
 var nextButton = document.getElementById("next-button")
-var saveButton = document.getElementById("save-button")
+var doneButton = document.getElementById("done-button")
 var timerEl = document.getElementById('timer-count');
 var questionContainerElement = document.getElementById("question-container")
 var questionElement = document.getElementById('question')
@@ -14,7 +14,7 @@ var shuffledQuestions, currentQuestionIndex;
 var timeLeft = 59;
 var userInitials;
 var timeInterval;
-var rules = confirm("1. You have 60 seconds to answer 5 JavaScript-related questions.\ 2. Each wrong answer subtracts 10 seconds from your total time.\ 3. Your final score will be the time remaining at the end of the quiz.\ 4. When the quiz is complete, enter your initials to be placed on the highscores page."); 
+var rules = confirm("1. You have 60 seconds to answer 5 JavaScript-related questions.\ 2. Each wrong answer subtracts 10 seconds from your total time.\ 3. Your final score will be the time remaining at the end of the quiz.\ 4. Enter your initials to be placed on the highscores page when the quiz is done."); 
 
 
 // Asks user to confirm understaning of the rules then starts quiz from start button
@@ -48,7 +48,7 @@ function startTimer() {
         // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
         timerEl.textContent = '1 second remaining';
         timeLeft--;
-      } else if (timeLeft === 0) {
+      } else if (timeLeft = 0) {
         // Use `clearInterval()` to stop the timer
         clearInterval(timeInterval);
         // Set the `textContent` of `timerEl` to show the remaining seconds
@@ -123,20 +123,19 @@ function selectAnswer(e) {
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
       nextButton.classList.remove('hide')  
     } else {
-        saveButton.classList.remove("hide");
-        saveButton.addEventListener('click', initialsConfirm);
+        doneButton.classList.remove("hide");
+        doneButton.addEventListener("click", stopTimerConfirm) 
     }
 }
 
-
-function initialsConfirm() {
-    clearInterval(timeInterval);
-    timeLeft = timeLeft + 1;
-    timeLeft = finalScore;
-    userInitials = confirm("Your score is " + finalScore +  ". \ Enter your initials in the upcoming form to be added to the highscores list!");
+function stopTimerConfirm() {
+  clearInterval(timeInterval);
+  timeLeft= timeLeft + 1;
+  checkScore= confirm("Your score is " + timeLeft + ". Enter your initials and score on the next page");
+  if (checkScore) {
+      open("scores.html")
+  }
 }
-
-
 
 
 

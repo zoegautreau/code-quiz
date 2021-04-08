@@ -1,28 +1,38 @@
-<!--<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="style.css" rel="stylesheet">
+    <script defer src="endscript.js"></script>
     <title>JavaScript Quiz</title>
 </head>
 <body>
+  <div id="quizStart">
+    <a href="index.html">Back to Quiz</a>
+  </div>
+  <div class="timer-container" id="timer-count">
+  </div>
+  <div class="card">
+    <h2>Enter your initials</h2>
     <form method="POST">
         <div class="input-group">
           <label for="initials">Initials</label>
-          <input type="text" name="initials" id="initials" placeholder="ZG" />
+          <input type="text" name="email" id="userInitials" placeholder="ABC" />
         </div>
         <div class="input-group">
           <label for="score">Score</label>
-          <input type="score" name="score" id="score" placeholder="#timer-count" />
+          <input type="score" name="score" id="timeLeft" placeholder=" " />
         </div>
-          <div id="msg"></div>
-          <button id="sign-up">Sign Up</button>
+        <div id="msg"></div>
+        <button id="save-button" class="save-button btn">Save</button>
     </form>
-    <h2>Initials and Scores</h2>
-    <p><strong>Initials:</strong> <span id="user-email"></span></p>
-    <p><strong>Score:</strong> <span id="user-password"></span></p>
 </div>
+  <div class="card">
+    <h2>Last Registered User & Score:</h2>
+      <p><strong>Initials:</strong> <span id="user-initials"></span></p>
+      <p><strong>Score:</strong> <span id="user-score"></span></p>
+  </div>
 </body>
 </html>
